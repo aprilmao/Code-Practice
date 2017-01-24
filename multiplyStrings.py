@@ -24,7 +24,6 @@ def multStr(str1,str2):
     str1 = str1[::-1]
     str2 = str2[::-1]
     for eachElem1 in range(len(str1)):
-        newStr = ""
         newStr = multPerIdx(str1,str2,eachElem1)
         newStr += "0" * eachElem1
         newNum += int(newStr)
