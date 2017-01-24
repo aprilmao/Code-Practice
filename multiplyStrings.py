@@ -15,23 +15,38 @@ def multPerIdx(str1,str2, eachElem1):
       multElem = ( comp1 * comp2 ) + carry
       carry = multElem/10
       multElem =  multElem%10
-      multElem = str(multElem)
-      newStr = multElem + newStr
+      newStr = str(multElem) + newStr
+    newStr = str(carry) + newStr
     return newStr
+    
+def addStr(str1,str2):
+    newAddStr = ""
+    carryAdd = 0
+    str1 = str1[::-1]
+    str2 = str2[::-1]
+    for eachElem in range(len(str1)):
+      addElem = int(str1[eachElem]) + int(str2[eachElem]) + carryAdd
+      carryAdd = addElem/10
+      addElem = addElem%10
+      newAddStr = str(addElem) + newAddStr
+    newAddStr = str(carryAdd) + newAddStr
+    newAddStr = newAddStr.lstrip('0')
+    return newAddStr
 
 def multStr(str1,str2):
-    newNum = 0
+    newNum = ""
     str1 = str1[::-1]
     str2 = str2[::-1]
     for eachElem1 in range(len(str1)):
         newStr = multPerIdx(str1,str2,eachElem1)
         newStr += "0" * eachElem1
-        newNum += int(newStr)
+        newNum,newStr = sameLen(newNum,newStr)
+        newNum = addStr(newNum, newStr)
     print newNum
 
 #examples    
-firstStr = "1234"
-secStr = "14"
+firstStr = "85"
+secStr = "999"
 #make string same length
 firstStr, secStr = sameLen(firstStr, secStr)
 #multiply strings
