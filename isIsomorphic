@@ -1,0 +1,20 @@
+def isIsomorphic(s, t):
+        sDict, tDict = {}, {}
+        for eachElem in range(len(s)):
+            sDict[s[eachElem]] = []
+            tDict[t[eachElem]] = []
+        for eachElem in range(len(s)):
+            sDict[s[eachElem]].append(eachElem)
+            tDict[t[eachElem]].append(eachElem)
+
+        if len(sDict.keys()) != len(tDict.keys()):
+            return False
+        for eachElem in range(len(s)):
+            compS, compT = sDict[s[eachElem]], tDict[t[eachElem]]
+            if compS != compT:
+                return False
+        return True
+        
+s = "abab"
+t = "baba"
+print isIsomorphic(s,t)
