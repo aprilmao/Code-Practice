@@ -1,0 +1,22 @@
+class Node(object):
+  def __init__(self, data, next = None):
+    self.data = data
+    self.next = next
+    
+def isCycle(root):
+  if root is None:
+    return False
+  searchNode1 = root
+  searchNode2 = root
+  while searchNode2 and searchNode2.next != None:
+      searchNode1 = searchNode1.next
+      searchNode2 = searchNode2.next.next
+      if searchNode1 == searchNode2:
+          return True
+  return False
+    
+root = Node(1)
+root.next = Node(2)
+root.next.next = Node(3)
+root.next.next.next = Node(2)
+print isCycle(root)
