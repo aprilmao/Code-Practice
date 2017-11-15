@@ -1,35 +1,33 @@
-def isBalanced(thing1, thing2):
-    if thing1 == '(' and thing2 == ')':
+def isBalanced(leftItem, rightItem):
+    if leftItem == '{' and rightItem == '}':
         return True
-    elif thing1 == '[' and thing2 == ']':
+    elif leftItem == '(' and rightItem == ')':
         return True
-    elif thing1 == '{' and thing2 == '}':
+    elif leftItem == '[' and rightItem == ']':
         return True
     else:
         return False
 
-def matchBrac(bracList):
-    s1 = list()
-    balanceString = True
-    for eachBrac in bracList:
-        if eachBrac == '(':
-            s1.insert(0, '(')
-        elif eachBrac == '[':
-            s1.insert(0, '[')
-        elif eachBrac == '{':
-            s1.insert(0, '{')
+def is_matched(expression):
+    stackS = []
+    for eachElem in expression:
+        if eachElem == "{" or eachElem == "[" or eachElem == "(":
+            stackS.append(eachElem)
         else:
-            if len(s1) == 0:
-                balanceString = False
-            else:
-                compareThis = s1.pop(0)
-                balanceString = isBalanced(compareThis, eachBrac)
-
-    if len(s1) == 0 and balanceString == True:
-        print "It is balanced"
+            if len(stackS) == 0:
+                return False
+            compareItem = stackS.pop()
+            if not isBalanced(compareItem, eachElem):
+                return False
+    
+    if len(stackS) == 0:
+        return True
+            
+def match_brac(expression):
+    if is_matched(expression) == True:
+        print "YES"
     else:
-        print "Not balanced"
-    return
+        print "NO"
 
 bList = ('(([])){}')
-matchBrac(bList)
+match_brac(bList)
